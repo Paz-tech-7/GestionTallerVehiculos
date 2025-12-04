@@ -5,3 +5,20 @@
 }
 
 
+.layout{
+    display: grid;
+    grid-template-rows: 250px 1fr 150px;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    padding: 50px;
+    height: 100dvh;
+    background-color: aliceblue;
+}
+
+header{
+    grid-area: header;
+    background-color: azure;
+    margin:50px
+}
