@@ -1,11 +1,15 @@
 /* ========================================================= */
-/* VARIABLES Y ESTILOS BASE (MÓVIL - Azul Marino/Mostaza) */
+/* VARIABLES Y ESTILOS BASE (Azul Marino y Mostaza) */
 /* ========================================================= */
 :root {
-    --primary-color: #003366; /* Azul Marino Oscuro */
-    --accent-color: #ffc400; /* Amarillo Mostaza (Acento) */
-    --success-color: #2e7d32; /* Verde para éxito */
-    --secondary-color: #78909c; /* Gris Azulado Suave */
+    --primary-color: #003366;
+    /* Azul Marino Oscuro */
+    --accent-color: #ffc400;
+    /* Amarillo Mostaza (Acento) */
+    --success-color: #2e7d32;
+    /* Verde para éxito */
+    --secondary-color: #78909c;
+    /* Gris Azulado Suave */
     --background-color: #f8f9fa;
     --card-background: #ffffff;
     --text-color: #333333;
@@ -13,7 +17,7 @@
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Estilos Generales */
+/* -------------------- Estilos Generales (Mobile First) -------------------- */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
@@ -46,12 +50,12 @@ header h1 {
     max-width: 100%;
     margin: 20px auto;
     padding: 0 15px;
-    display: grid; /* Usaremos Grid desde el principio */
-    grid-template-columns: 1fr; /* Una columna en móvil */
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
-/* Tarjetas (Cards) */
+/* -------------------- Tarjetas (Cards) -------------------- */
 .card {
     background-color: var(--card-background);
     padding: 25px;
@@ -65,13 +69,14 @@ header h1 {
     color: var(--primary-color);
     margin-top: 0;
     padding-bottom: 12px;
-    border-bottom: 2px solid var(--accent-color); /* Toque de acento */
+    border-bottom: 2px solid var(--accent-color);
+    /* Toque de acento */
     font-weight: 700;
     text-align: center;
     font-size: 1.2em;
 }
 
-/* Menu y Botones (Móvil) */
+/* -------------------- Menú y Botones -------------------- */
 .main-menu {
     display: flex;
     flex-direction: column;
@@ -99,44 +104,47 @@ header h1 {
 }
 
 /* Colores de los botones */
-.btn-primary { 
-    background-color: var(--primary-color); 
-    border-bottom: 4px solid var(--accent-color); /* Borde de acento */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-bottom: 4px solid var(--accent-color);
+    /* Borde de acento */
 }
-.btn-secondary { background-color: var(--secondary-color); }
-.btn-success {
-    background-color: var(--success-color);
-    padding: 25px 20px;
-    font-size: 1.1em;
+
+.btn-secondary {
+    background-color: var(--secondary-color);
 }
 
 /* Hover */
-.btn-primary:hover { 
-    background-color: #004d99; /* Azul más claro */
-    transform: translateY(-2px); 
-}
-.btn-secondary:hover { 
-    background-color: #607d8b; 
-    transform: translateY(-1px);
-}
-.btn-success:hover { 
-    background-color: #388e3c; 
+.btn-primary:hover {
+    background-color: #004d99;
+    /* Azul más claro */
     transform: translateY(-2px);
+    cursor: pointer;
 }
 
-/* Orden de las tarjetas en Móvil (sin card-workflow en el HTML, pero lo dejamos listo) */
+.btn-secondary:hover {
+    background-color: #607d8b;
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #e0e0e0;
+    color: var(--text-color);
+    font-size: 0.8em;
+    margin-top: auto;
+}
+
+/* Orden de las tarjetas en Móvil */
 .card-highlight {
-    order: 1; 
+    order: 1;
 }
-.card-workflow {
-    order: 2;
-}
+
 .card-data {
-    order: 3;
-}
-.card-workflow h2 {
-    /* Si el botón de "Marcar como recogido" está solo, se oculta el h2 en móvil */
-    display: none; 
+    order: 2;
 }
 
 
@@ -145,7 +153,8 @@ header h1 {
 /* --------------------------------------------------------- */
 @media (min-width: 768px) {
     .dashboard {
-        grid-template-columns: 2fr 1fr; /* Dos columnas: Acciones | Datos/Flujo */
+        grid-template-columns: 2fr 1fr;
+        /* Dos columnas: Acciones | Datos/Flujo */
         max-width: 800px;
         margin: 40px auto;
         gap: 30px;
@@ -153,24 +162,35 @@ header h1 {
 
     /* Redistribución en 2 columnas */
     .card-highlight {
-        grid-column: 1; /* Columna 1 (Acciones Principales) */
+        grid-column: 1;
         order: 1;
+        min-height: 250px;
     }
 
+    /* Altura para alineación */
     .card-data {
-        grid-column: 2; /* Columna 2 (Datos) */
+        grid-column: 2;
         order: 2;
     }
 
-    .card-workflow {
-        /* Se extiende debajo de ambas columnas */
-        grid-column: 1 / span 2; 
-        order: 3;
-    }
-    
     .card-workflow h2 {
-        /* Mostrar título en Tabletas */
-        display: block; 
+        display: block;
+    }
+
+    /* Botones de acciones principales en fila en tabletas */
+    .card-highlight .main-menu {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-grow: 1;
+        gap: 20px;
+    }
+
+    .card-highlight .btn {
+        flex: 1;
+        max-width: 350px;
+        font-size: 1.1em;
+        padding: 25px 30px;
     }
 }
 
@@ -181,50 +201,176 @@ header h1 {
 @media (min-width: 1024px) {
     .dashboard {
         max-width: 1200px;
-        grid-template-columns: 2fr 1fr 1fr; /* Vuelve al layout de 3 columnas */
+        grid-template-columns: 2fr 1fr;
+        /* Mantenemos 2 columnas principales */
         gap: 40px;
     }
 
-    /* Redistribución en 3 columnas */
+    /* Redistribución en 2 columnas principales */
     .card-highlight {
-        grid-column: 1 / span 2; /* Ocupa las primeras dos columnas */
+        grid-column: 1;
         order: 1;
     }
-    
+
     .card-data {
-        grid-column: 3; /* Columna 3 */
+        grid-column: 2;
         order: 2;
     }
-    
-    .card-workflow {
-        grid-column: 1 / span 3; /* El botón de flujo se extiende abajo */
-        order: 3;
-    }
-    
-    /* Mejorar la distribución de espacio en la tarjeta principal de escritorio */
+
     .card-highlight .main-menu {
-        flex-direction: row; /* Botones en fila en la tarjeta principal */
-        justify-content: space-around;
-        gap: 30px;
-        flex-grow: 0;
-    }
-    .card-highlight .btn {
-        flex: 1; /* Reparten el espacio equitativamente */
-        max-width: 350px;
-        font-size: 1.2em;
-        padding: 25px 30px;
-    }
-    
-    /* Botón de éxito grande para escritorio */
-    .card-workflow .main-menu {
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+        justify-content: space-around;
+    }
+}
+
+/* ========================================================= */
+/* ESTILOS DE MODAL (Registro y Reparación) */
+/* ========================================================= */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal--active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    margin: 15% 10px;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal--active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    text-align: left;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.close-btn {
+    color: var(--secondary-color);
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--accent-color);
+}
+
+/* Estilos de Formulario (Aplicables a ambos modales) */
+#vehicle-registration-form,
+#vehicle-repair-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-actions {
+    width: 100%;
+    margin-top: 30px;
+    text-align: right;
+}
+
+/* Botón de Submit/Actualizar */
+.btn-submit {
+    background-color: var(--success-color);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #388e3c;
+}
+
+
+/* MEDIA QUERY: Tabletas y Escritorio (min-width: 768px) - Ajustes del Formulario */
+@media (min-width: 768px) {
+
+    /* Campos que no son full-width ocupan la mitad */
+    #vehicle-registration-form .form-group:not(.full-width),
+    #vehicle-repair-form .form-group:not(.full-width) {
+        width: calc(50% - 10px);
+        /* El 50% menos la mitad del gap de 20px */
     }
 
-    .btn-success {
-        font-size: 1.4em;
-        max-width: 500px;
+    /* Ajuste de margen para los campos impares */
+    #vehicle-registration-form>.form-group:nth-child(2n+1),
+    #vehicle-repair-form .form-group:nth-child(2n+1):not(.full-width) {
+        margin-right: 20px;
+    }
+
+    .modal-content {
+        margin: auto;
     }
 }
