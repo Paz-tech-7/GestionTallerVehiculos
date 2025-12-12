@@ -34,7 +34,6 @@ class Vehiculo {
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-
     /**
      * 
      * 
@@ -102,12 +101,17 @@ document.addEventListener('DOMContentLoaded', function () {
      *      Actualizar options
      * ----------------------------- 
     */
-    function actualizarOpciones(){
-        vehiculos.forEach(v => {
-            selectMatriculas.innerHTML += `
-            <option value="${v.matricula}">${v.matricula}</option>
-            `
-        });
+    function actualizarOpciones() {
+        console.log(vehiculos);
+        if (vehiculos.length !== 0) {
+            let matriculas = vehiculos.map(vehiculo => {
+                return `<option value=${vehiculo.matricula}>${vehiculo.matricula}</option>`;
+            })
+            selectMatriculas.innerHTML = matriculas.join('');
+        }
+        else {
+            selectMatriculas.innerHTML = `<option value="0">No existen vehiculos</option>`
+        }
     }
 
     /**
@@ -142,7 +146,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formularioReparar.addEventListener("submit", function (e) {
         e.preventDefault();
-        
+       let matricula = formularioReparar.repairMatricula.value;
+        let averiaReal = formularioReparar.averiaReal.value;
+        let mecanico = formularioReparar.mecanico.value;
+        let precioReparacion = formularioReparar.precio.value;
+        repararVehiculo(matricula,averiaReal,precioReparacion,mecanico);
         modalReparacion.classList.remove(claseModalActivo);
     });
 
