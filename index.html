@@ -16,40 +16,42 @@
     </header>
 
     <main class="dashboard">
-        <div class="card card-highlight">
+
+        <section class="card card-highlight">
             <h2>⚙️ Acciones Principales</h2>
             <nav class="main-menu">
-                <button id="open-register-modal" class="btn btn-primary">
+                <button id="openRegister" class="btn btn-primary">
                     <span class="icon">🚗</span> Registrar vehículo
                 </button>
-                <button id="open-repair-modal" class="btn btn-primary">
+                <button id="openRepair" class="btn btn-primary">
                     <span class="icon">🔧</span> Reparar vehículo
                 </button>
             </nav>
-        </div>
+        </section>
 
-        <div class="card card-data">
+        <section class="card card-data">
             <h2>📊 Datos y Consultas</h2>
             <nav class="main-menu">
-                <button class="btn btn-secondary">
+                <button id="listBtn" class="btn btn-secondary">
                     <span class="icon">📋</span> Listar vehículos
                 </button>
-                <button class="btn btn-secondary">
+                <button id="filterBtn" class="btn btn-secondary">
                     <span class="icon">🔎</span> Filtrar por estado
                 </button>
             </nav>
-        </div>
+        </section>
+
     </main>
 
     <footer>
         <p>&copy; 2025 Taller Mecánico | Dashboard de Gestión</p>
     </footer>
 
-    <div id="register-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-register-modal">&times;</span>
+    <div id="registerModal" class="modal">
+        <article class="modal-content">
+            <span class="close-btn" id="closeRegister">&times;</span>
             <h2>🚗 Registrar Nuevo Vehículo</h2>
-            <form id="vehicle-registration-form">
+            <form id="vehicleRegisterForm">
                 <div class="form-group"><label for="matricula">Matrícula (Ej: 1234ABC)</label><input type="text"
                         id="matricula" name="matricula"></div>
                 <div class="form-group"><label for="marca">Marca</label><input type="text" id="marca" name="marca">
@@ -63,16 +65,17 @@
                         name="telefono"></div>
                 <div class="form-group full-width"><label for="problema">Problema o Motivo del Ingreso</label><textarea
                         id="problema" name="problema" rows="4"></textarea></div>
+
                 <div class="form-actions"><button type="submit" class="btn btn-submit">Guardar Vehículo</button></div>
             </form>
-        </div>
+        </article>
     </div>
 
-    <div id="repair-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-repair-modal">&times;</span>
+    <div id="repairModal" class="modal">
+        <article class="modal-content">
+            <span class="close-btn" id="closeRepair">&times;</span>
             <h2>🔧 Actualizar Reparación de Vehículo</h2>
-            <form id="vehicle-repair-form">
+            <form id="vehicleRepairForm">
 
                 <div class="form-group full-width">
                     <label for="repairMatricula">Matrícula</label>
@@ -81,8 +84,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="averiaReal">Avería Real Encontrada</label>
-                    <textarea id="averiaReal" name="averia_real" rows="3"
+                    <label for="averia">Avería Real Encontrada</label>
+                    <textarea id="averia" name="averiaReal" rows="3"
                         placeholder="Descripción de la reparación completada"></textarea>
                 </div>
 
@@ -100,7 +103,7 @@
                     <button type="submit" class="btn btn-submit btn-update">Actualizar y Marcar como Arreglado</button>
                 </div>
             </form>
-        </div>
+        </article>
     </div>
 </body>
 

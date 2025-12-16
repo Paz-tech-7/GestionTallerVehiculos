@@ -289,8 +289,8 @@ footer {
 }
 
 /* Estilos de Formulario (Aplicables a ambos modales) */
-#vehicle-registration-form,
-#vehicle-repair-form {
+#vehicleRegisterForm,
+#vehicleRepairForm{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -358,15 +358,15 @@ footer {
 @media (min-width: 768px) {
 
     /* Campos que no son full-width ocupan la mitad */
-    #vehicle-registration-form .form-group:not(.full-width),
-    #vehicle-repair-form .form-group:not(.full-width) {
+    #vehicleRegisterForm .form-group:not(.full-width),
+    #vehicleRepairForm .form-group:not(.full-width) {
         width: calc(50% - 10px);
         /* El 50% menos la mitad del gap de 20px */
     }
 
     /* Ajuste de margen para los campos impares */
-    #vehicle-registration-form>.form-group:nth-child(2n+1),
-    #vehicle-repair-form .form-group:nth-child(2n+1):not(.full-width) {
+    #vehicleRegisterForm > .form-group:nth-child(2n+1),
+    #vehicleRepairForm .form-group:nth-child(2n+1):not(.full-width) {
         margin-right: 20px;
     }
 

@@ -35,9 +35,9 @@ class Vehiculo {
 
 document.addEventListener('DOMContentLoaded', function () {
     /**
-     * 
-     * 
-     * 
+     * ----------------------------------
+     *      Constantes y Variables
+     * ---------------------------------
     */
     const claseModalActivo = "modal--active";
 
@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
      *       Variables globales (Elementos del DOM)
      * -------------------------------------------------
     */
-    const modalregistro = document.getElementById("register-modal");
-    const modalReparacion = document.getElementById("repair-modal");
-    const formularioRegistro = document.getElementById("vehicle-registration-form");
-    const formularioReparar = document.getElementById("vehicle-repair-form");
+    const modalregistro = document.getElementById("registerModal");
+    const modalReparacion = document.getElementById("repairModal");
+    const formularioRegistro = document.getElementById("vehicleRegisterForm");
+    const formularioReparar = document.getElementById("vehicleRepairForm");
     const selectMatriculas = document.getElementById("repair-matricula");
 
     /**
@@ -57,10 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
      *         Botones
      * --------------------------
     */
-    const mostrarRegistroBtn = document.getElementById("open-register-modal");
-    const mostrarRepararBtn = document.getElementById("open-repair-modal");
-    const cerrarRegistroBtn = document.getElementById("close-register-modal");
-    const cerrarRepararBtn = document.getElementById("close-repair-modal");
+    const mostrarRegistroBtn = document.getElementById("openRegister");
+    const mostrarRepararBtn = document.getElementById("openRepair");
+    const cerrarRegistroBtn = document.getElementById("closeRegister");
+    const cerrarRepararBtn = document.getElementById("closeRepair");
+
 
 
     /**
@@ -88,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
      *       Reparar Vehiculos
      * -----------------------------
     */
-    function repararVehiculo(matricula, averiaReal, precio, mecanico) {
+    function repararVehiculo(matricula, averia_real, precio, mecanico) {
         let vehiculo = vehiculos.find(v => v.matricula === matricula);
-        vehiculo.averiaReal = averiaReal;
+        vehiculo.averiaReal = averia_real;
         vehiculo.precioReparacion = precio;
         vehiculo.mecanico = mecanico;
         vehiculo.estado = "Arreglado";
@@ -105,15 +106,28 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(vehiculos);
         if (vehiculos.length !== 0) {
             let matriculas = vehiculos.map(vehiculo => {
-                return `<option value=${vehiculo.matricula}>${vehiculo.matricula}</option>`;
+                return vehiculo.estado !== "Arreglado" ? `<option value="${vehiculo.matricula}">${vehiculo.matricula}</option>` : `<option value="0">No existen vehiculos</option>`;
             })
             selectMatriculas.innerHTML = matriculas.join('');
         }
         else {
             selectMatriculas.innerHTML = `<option value="0">No existen vehiculos</option>`
+            return;
         }
     }
 
+    /**
+     * -----------------------------
+     *      Vaciar formularios
+     * -----------------------------
+    */
+    function formatearRegistro() {
+        formularioRegistro.reset();
+    }
+
+    function formatearReparacion() {
+        formularioReparar.reset()
+    }
     /**
      * -----------------------------
      *           EVENTOS
@@ -140,17 +154,18 @@ document.addEventListener('DOMContentLoaded', function () {
     formularioRegistro.addEventListener("submit", function (e) {
         e.preventDefault();
         registrarVehiculo();
-        console.log(vehiculos);
         modalregistro.classList.remove(claseModalActivo);
+        formatearRegistro();
     });
 
     formularioReparar.addEventListener("submit", function (e) {
         e.preventDefault();
-       let matricula = formularioReparar.repairMatricula.value;
+        let matricula = formularioReparar.repairMatricula.value;
         let averiaReal = formularioReparar.averiaReal.value;
         let mecanico = formularioReparar.mecanico.value;
         let precioReparacion = formularioReparar.precio.value;
-        repararVehiculo(matricula,averiaReal,precioReparacion,mecanico);
+        console.log(averiaReal)
+        repararVehiculo(matricula, averiaReal, precioReparacion, mecanico);
         modalReparacion.classList.remove(claseModalActivo);
     });
 
