@@ -58,11 +58,12 @@ header h1 {
 /* -------------------- Tarjetas (Cards) -------------------- */
 .card {
     background-color: var(--card-background);
-    padding: 25px;
+    padding: 50px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
+    height: max-content;
 }
 
 .card h2 {
@@ -70,11 +71,12 @@ header h1 {
     margin-top: 0;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--accent-color);
-    /* Toque de acento */
     font-weight: 700;
     text-align: center;
     font-size: 1.2em;
 }
+
+
 
 /* -------------------- Menú y Botones -------------------- */
 .main-menu {
@@ -88,7 +90,7 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 20px;
+    padding: 20px;
     text-decoration: none;
     color: white;
     font-weight: 500;
@@ -107,11 +109,11 @@ header h1 {
 .btn-primary {
     background-color: var(--primary-color);
     border-bottom: 4px solid var(--accent-color);
-    /* Borde de acento */
 }
 
 .btn-secondary {
     background-color: var(--secondary-color);
+    padding-bottom: 30px;
 }
 
 /* Hover */
@@ -147,81 +149,6 @@ footer {
     order: 2;
 }
 
-
-/* --------------------------------------------------------- */
-/* MEDIA QUERY: Tabletas (min-width: 768px) */
-/* --------------------------------------------------------- */
-@media (min-width: 768px) {
-    .dashboard {
-        grid-template-columns: 2fr 1fr;
-        /* Dos columnas: Acciones | Datos/Flujo */
-        max-width: 800px;
-        margin: 40px auto;
-        gap: 30px;
-    }
-
-    /* Redistribución en 2 columnas */
-    .card-highlight {
-        grid-column: 1;
-        order: 1;
-        min-height: 250px;
-    }
-
-    /* Altura para alineación */
-    .card-data {
-        grid-column: 2;
-        order: 2;
-    }
-
-    .card-workflow h2 {
-        display: block;
-    }
-
-    /* Botones de acciones principales en fila en tabletas */
-    .card-highlight .main-menu {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-grow: 1;
-        gap: 20px;
-    }
-
-    .card-highlight .btn {
-        flex: 1;
-        max-width: 350px;
-        font-size: 1.1em;
-        padding: 25px 30px;
-    }
-}
-
-
-/* --------------------------------------------------------- */
-/* MEDIA QUERY: Escritorio (min-width: 1024px) */
-/* --------------------------------------------------------- */
-@media (min-width: 1024px) {
-    .dashboard {
-        max-width: 1200px;
-        grid-template-columns: 2fr 1fr;
-        /* Mantenemos 2 columnas principales */
-        gap: 40px;
-    }
-
-    /* Redistribución en 2 columnas principales */
-    .card-highlight {
-        grid-column: 1;
-        order: 1;
-    }
-
-    .card-data {
-        grid-column: 2;
-        order: 2;
-    }
-
-    .card-highlight .main-menu {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-}
 
 /* ========================================================= */
 /* ESTILOS DE MODAL (Registro y Reparación) */
@@ -354,7 +281,80 @@ footer {
 }
 
 
-/* MEDIA QUERY: Tabletas y Escritorio (min-width: 768px) - Ajustes del Formulario */
+/* --------------------------------------------------------- */
+/* MEDIA QUERY: Tabletas (min-width: 768px) */
+/* --------------------------------------------------------- */
+@media (min-width: 768px) {
+    .dashboard {
+        grid-template-columns: 2fr 1fr;
+        max-width: 800px;
+        margin: 40px auto;
+        gap: 30px;
+    }
+
+    /* Redistribución en 2 columnas */
+    .card-highlight {
+        grid-column: 1;
+        order: 1;
+    }
+
+    /* Altura para alineación */
+    .card-data {
+        grid-column: 2;
+        order: 2;
+    }
+
+    .card-workflow h2 {
+        display: block;
+    }
+
+    /* Botones de acciones principales en fila en tabletas */
+    .card-highlight .main-menu {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-grow: 1;
+        gap: 20px;
+    }
+
+    .card-highlight .btn {
+        flex: 1;
+        max-width: 350px;
+        font-size: 1.1em;
+        padding: 25px 30px;
+    }
+}
+
+
+/* --------------------------------------------------------- */
+/* MEDIA QUERY: Escritorio (min-width: 1024px) */
+/* --------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .dashboard {
+        max-width: 1200px;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+    }
+
+    /* Redistribución en 2 columnas principales */
+    .card-highlight {
+        grid-column: 1;
+        order: 1;
+    }
+
+    .card-data {
+        grid-column: 2;
+        order: 2;
+    }
+
+    .card-highlight .main-menu {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+
+/* MEDIA QUERY: Tabletas y Escritorio (min-width: 768px)*/
 @media (min-width: 768px) {
 
     /* Campos que no son full-width ocupan la mitad */

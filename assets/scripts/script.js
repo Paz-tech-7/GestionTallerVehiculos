@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const formularioRegistro = document.getElementById("vehicleRegisterForm");
     const formularioReparar = document.getElementById("vehicleRepairForm");
     const selectMatriculas = document.getElementById("repair-matricula");
+    const tablaVehiculos = document.getElementById("listVehiculos");
+
 
     /**
      * --------------------------
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const mostrarRepararBtn = document.getElementById("openRepair");
     const cerrarRegistroBtn = document.getElementById("closeRegister");
     const cerrarRepararBtn = document.getElementById("closeRepair");
-
+    const listBtn = document.getElementById("listBtn");
 
 
     /**
@@ -97,6 +99,37 @@ document.addEventListener('DOMContentLoaded', function () {
         vehiculo.estado = "Arreglado";
     }
 
+
+    /* 
+    * --------------------------------
+    *       Listar Vehiculos
+    * --------------------------------
+    */
+
+    function generateTable(){
+        if(vehiculos.length <= 0){
+            alert("No existen vehiculos registrados");
+            return;
+        }
+        console.log(vehiculos);
+
+        tablaVehiculos.innerHTML = `
+        <table class="listVehiculos__tablaVehiculos">
+            <thead class="tablaVehiculos__thead">
+                <th>Matricula</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        `
+        console.log(vehiculos);
+        return true;
+    }
+
     /**
      * -----------------------------
      *      Actualizar options
@@ -106,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(vehiculos);
         if (vehiculos.length !== 0) {
             let matriculas = vehiculos.map(vehiculo => {
-                return vehiculo.estado !== "Arreglado" ? `<option value="${vehiculo.matricula}">${vehiculo.matricula}</option>` : `<option value="0">No existen vehiculos</option>`;
+                return vehiculo.estado !== "Arreglado" ? `<option value="${vehiculo.matricula}">${vehiculo.matricula}</option>` : `<option value="">No existen vehiculos</option>`;
             })
             selectMatriculas.innerHTML = matriculas.join('');
         }
@@ -115,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
     }
+
+
 
     /**
      * -----------------------------
@@ -167,6 +202,11 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(averiaReal)
         repararVehiculo(matricula, averiaReal, precioReparacion, mecanico);
         modalReparacion.classList.remove(claseModalActivo);
+        formatearReparacion();
     });
 
+
+    listBtn.addEventListener('click', () => {
+        generateTable();
+    })
 })
