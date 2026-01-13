@@ -1,0 +1,378 @@
+/* ========================================================= */
+/* VARIABLES Y ESTILOS BASE (Azul Marino y Mostaza) */
+/* ========================================================= */
+:root {
+  --primary-color: #003366;
+  /* Azul Marino Oscuro */
+  --accent-color: #ffc400;
+  /* Amarillo Mostaza (Acento) */
+  --success-color: #2e7d32;
+  /* Verde para éxito */
+  --secondary-color: #78909c;
+  /* Gris Azulado Suave */
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --border-radius: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* -------------------- Estilos Generales (Mobile First) -------------------- */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4em;
+  letter-spacing: 1px;
+}
+
+/* Contenido Principal (Dashboard - Mobile First: Columna única) */
+.dashboard {
+  flex-grow: 1;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* -------------------- Tarjetas (Cards) -------------------- */
+.card {
+  background-color: var(--card-background);
+  padding: 50px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+}
+
+.card h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-color);
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+/* -------------------- Menú y Botones -------------------- */
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+/* Colores de los botones */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-bottom: 4px solid var(--accent-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  padding-bottom: 30px;
+}
+
+/* Hover */
+.btn-primary:hover {
+  background-color: #004d99;
+  /* Azul más claro */
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #607d8b;
+  transform: translateY(-1px);
+  cursor: pointer;
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background-color: #e0e0e0;
+  color: var(--text-color);
+  font-size: 0.8em;
+  margin-top: auto;
+}
+
+/* Orden de las tarjetas en Móvil */
+.card-highlight {
+  order: 1;
+}
+
+.card-data {
+  order: 2;
+}
+
+.card-listVehiculos {
+  display: none;
+  order: 3;
+}
+
+.card-listVehiculos--active {
+  display: block;
+}
+
+/* ========================================================= */
+/* ESTILOS DE MODAL (Registro y Reparación) */
+/* ========================================================= */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal--active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--card-background);
+  margin: 15% 10px;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal--active .modal-content {
+  transform: scale(1);
+}
+
+.modal-content h2 {
+  color: var(--primary-color);
+  text-align: left;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.close-btn {
+  color: var(--secondary-color);
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: var(--accent-color);
+}
+
+/* Estilos de Formulario (Aplicables a ambos modales) */
+#vehicleRegisterForm,
+#vehicleRepairForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.9em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+}
+
+.form-group.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  width: 100%;
+  margin-top: 30px;
+  text-align: right;
+}
+
+/* Botón de Submit/Actualizar */
+.btn-submit {
+  background-color: var(--success-color);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #388e3c;
+}
+
+/* --------------------------------------------------------- */
+/* MEDIA QUERY: Tabletas (min-width: 768px) */
+/* --------------------------------------------------------- */
+@media (min-width: 768px) {
+  .dashboard {
+    grid-template-columns: 2fr 1fr;
+    max-width: 800px;
+    margin: 40px auto;
+    gap: 30px;
+  }
+
+  /* Redistribución en 2 columnas */
+  .card-highlight {
+    grid-column: 1;
+    order: 1;
+  }
+
+  /* Altura para alineación */
+  .card-data {
+    grid-column: 2;
+    order: 2;
+  }
+
+  .card-workflow h2 {
+    display: block;
+  }
+
+  /* Botones de acciones principales en fila en tabletas */
+  .card-highlight .main-menu {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-grow: 1;
+    gap: 20px;
+  }
+
+  .card-highlight .btn {
+    flex: 1;
+    max-width: 350px;
+    font-size: 1.1em;
+    padding: 25px 30px;
+  }
+}
+
+/* --------------------------------------------------------- */
+/* MEDIA QUERY: Escritorio (min-width: 1024px) */
+/* --------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .dashboard {
+    max-width: 1200px;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+  }
+
+  /* Redistribución en 2 columnas principales */
+  .card-highlight {
+    grid-column: 1;
+    order: 1;
+  }
+
+  .card-data {
+    grid-column: 2;
+    order: 2;
+  }
+
+  .card-highlight .main-menu {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+/* MEDIA QUERY: Tabletas y Escritorio (min-width: 768px)*/
+@media (min-width: 768px) {
+  /* Campos que no son full-width ocupan la mitad */
+  #vehicleRegisterForm .form-group:not(.full-width),
+  #vehicleRepairForm .form-group:not(.full-width) {
+    width: calc(50% - 20px);
+    /* El 50% menos la mitad del gap de 20px */
+  }
+
+  /* Ajuste de margen para los campos impares */
+  #vehicleRegisterForm > .form-group:nth-child(2n + 1),
+  #vehicleRepairForm .form-group:nth-child(2n + 1):not(.full-width) {
+    margin-right: 20px;
+  }
+
+  .modal-content {
+    margin: auto;
+  }
+}

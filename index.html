@@ -1,115 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Taller Mecánico - Inicio</title>
-    <link rel="stylesheet" href="assets/styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="assets/scripts/script.js"></script>
-</head>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="script.js"></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>Gestión de Taller Mecánico</h1>
+      <h1>Gestión de Taller Mecánico</h1>
     </header>
 
     <main class="dashboard">
+      <section class="card card-highlight">
+        <h2>⚙️ Acciones Principales</h2>
+        <nav class="main-menu">
+          <button id="openRegister" class="btn btn-primary">
+            <span class="icon">🚗</span> Registrar vehículo
+          </button>
+          <button id="openRepair" class="btn btn-primary">
+            <span class="icon">🔧</span> Reparar vehículo
+          </button>
+        </nav>
+        <article id="vehiculos" class="card-listVehiculos">
+          <table id="listVehiculos__table">
+            <thead>
+              <tr>
+                <th>MATRICULA</th>
+                <th>MARCA</th>
+                <th>MODELO</th>
+                <th>AÑO</th>
+                <th>CLIENTE</th>
+                <th>ESTADO</th>
+                <th>PROBLEMA REAL</th>
+              </tr>
+            </thead>
+            <tbody id="table__tbody"></tbody>
+          </table>
+        </article>
+      </section>
+      <section class="card card-data">
+        <h2>📊 Datos y Consultas</h2>
+        <nav class="main-menu">
+          <button id="listBtn" class="btn btn-secondary">
+            <span class="icon">📋</span> Listar vehículos
+          </button>
 
-        <section class="card card-highlight">
-            <h2>⚙️ Acciones Principales</h2>
-            <nav class="main-menu">
-                <button id="openRegister" class="btn btn-primary">
-                    <span class="icon">🚗</span> Registrar vehículo
-                </button>
-                <button id="openRepair" class="btn btn-primary">
-                    <span class="icon">🔧</span> Reparar vehículo
-                </button>
-            </nav>
-            <article class="card__listVehiculos">
-                <ul id="listVehiculos">
-                    
-                </ul>
-            </article>
-        </section>
-
-        <section class="card card-data">
-            <h2>📊 Datos y Consultas</h2>
-            <nav class="main-menu">
-                <button id="listBtn" class="btn btn-secondary">
-                    <span class="icon">📋</span> Listar vehículos
-                </button>
-                <button id="filterBtn" class="btn btn-secondary">
-                    <span class="icon">🔎</span> Filtrar por estado
-                </button>
-            </nav>
-        </section>
-
+          <div class="form-group">
+            <select
+              id="filterState"
+              class="btn btn-secondary"
+              style="padding: 10px; width: 100%; margin-bottom: 10px"
+            >
+              <option value="">Todos los estados</option>
+              <option value="Para arreglar">Para arreglar</option>
+              <option value="Arreglado">Arreglado</option>
+              <option value="Recogido">Recogido</option>
+            </select>
+            <button id="filterBtn" class="btn btn-secondary">
+              <span class="icon">🔎</span> Filtrar por estado
+            </button>
+          </div>
+        </nav>
+      </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Taller Mecánico | Dashboard de Gestión</p>
+      <p>&copy; 2025 Taller Mecánico | Dashboard de Gestión</p>
     </footer>
 
     <div id="registerModal" class="modal">
-        <article class="modal-content">
-            <span class="close-btn" id="closeRegister">&times;</span>
-            <h2>🚗 Registrar Nuevo Vehículo</h2>
-            <form id="vehicleRegisterForm">
-                <div class="form-group"><label for="matricula">Matrícula (Ej: 1234ABC)</label><input type="text"
-                        id="matricula" name="matricula"></div>
-                <div class="form-group"><label for="marca">Marca</label><input type="text" id="marca" name="marca">
-                </div>
-                <div class="form-group"><label for="modelo">Modelo</label><input type="text" id="modelo" name="modelo">
-                </div>
-                <div class="form-group"><label for="year">Año</label><input type="number" id="year" name="year"></div>
-                <div class="form-group"><label for="cliente">Nombre del Cliente</label><input type="text" id="cliente"
-                        name="cliente"></div>
-                <div class="form-group"><label for="telefono">Teléfono</label><input type="tel" id="telefono"
-                        name="telefono"></div>
-                <div class="form-group full-width"><label for="problema">Problema o Motivo del Ingreso</label><textarea
-                        id="problema" name="problema" rows="4"></textarea></div>
+      <article class="modal-content">
+        <span class="close-btn" id="closeRegister">&times;</span>
+        <h2>🚗 Registrar Nuevo Vehículo</h2>
+        <form id="vehicleRegisterForm">
+          <div class="form-group">
+            <label for="matricula">Matrícula (Ej: 1234ABC)</label
+            ><input type="text" id="matricula" name="matricula" />
+          </div>
+          <div class="form-group">
+            <label for="marca">Marca</label
+            ><input type="text" id="marca" name="marca" />
+          </div>
+          <div class="form-group">
+            <label for="modelo">Modelo</label
+            ><input type="text" id="modelo" name="modelo" />
+          </div>
+          <div class="form-group">
+            <label for="year">Año</label
+            ><input type="number" id="year" name="year" />
+          </div>
+          <div class="form-group">
+            <label for="cliente">Nombre del Cliente</label
+            ><input type="text" id="cliente" name="cliente" />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label
+            ><input type="tel" id="telefono" name="telefono" />
+          </div>
+          <div class="form-group full-width">
+            <label for="problema">Problema o Motivo del Ingreso</label
+            ><textarea id="problema" name="problema" rows="4"></textarea>
+          </div>
 
-                <div class="form-actions"><button type="submit" class="btn btn-submit">Guardar Vehículo</button></div>
-            </form>
-        </article>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-submit">
+              Guardar Vehículo
+            </button>
+          </div>
+        </form>
+      </article>
     </div>
 
     <div id="repairModal" class="modal">
-        <article class="modal-content">
-            <span class="close-btn" id="closeRepair">&times;</span>
-            <h2>🔧 Actualizar Reparación de Vehículo</h2>
-            <form id="vehicleRepairForm">
+      <article class="modal-content">
+        <span class="close-btn" id="closeRepair">&times;</span>
+        <h2>🔧 Actualizar Reparación de Vehículo</h2>
+        <form id="vehicleRepairForm">
+          <div class="form-group full-width">
+            <label for="repairMatricula">Matrícula</label>
+            <select name="repairMatricula" id="repair-matricula"></select>
+          </div>
 
-                <div class="form-group full-width">
-                    <label for="repairMatricula">Matrícula</label>
-                    <select name="repairMatricula" id="repair-matricula">
-                    </select>
-                </div>
+          <div class="form-group full-width">
+            <label for="averia">Avería Real Encontrada</label>
+            <textarea
+              id="averia"
+              name="averiaReal"
+              rows="3"
+              placeholder="Descripción de la reparación completada"
+            ></textarea>
+          </div>
 
-                <div class="form-group full-width">
-                    <label for="averia">Avería Real Encontrada</label>
-                    <textarea id="averia" name="averiaReal" rows="3"
-                        placeholder="Descripción de la reparación completada"></textarea>
-                </div>
+          <div class="form-group">
+            <label for="mecanico">Mecánico Responsable</label>
+            <input
+              type="text"
+              id="mecanico"
+              name="mecanico"
+              placeholder="Nombre del mecánico"
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="mecanico">Mecánico Responsable</label>
-                    <input type="text" id="mecanico" name="mecanico" placeholder="Nombre del mecánico">
-                </div>
+          <div class="form-group">
+            <label for="precio">Precio Total (€)</label>
+            <input
+              type="number"
+              id="precio"
+              name="precio"
+              placeholder="Costo total de la reparación"
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="precio">Precio Total (€)</label>
-                    <input type="number" id="precio" name="precio" placeholder="Costo total de la reparación">
-                </div>
-
-                <div class="form-actions full-width">
-                    <button type="submit" class="btn btn-submit btn-update">Actualizar y Marcar como Arreglado</button>
-                </div>
-            </form>
-        </article>
+          <div class="form-actions full-width">
+            <button type="submit" class="btn btn-submit btn-update">
+              Actualizar y Marcar como Arreglado
+            </button>
+          </div>
+        </form>
+      </article>
     </div>
-</body>
-
+  </body>
 </html>
