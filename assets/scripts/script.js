@@ -113,20 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         console.log(vehiculos);
 
-        tablaVehiculos.innerHTML = `
-        <table class="listVehiculos__tablaVehiculos">
-            <thead class="tablaVehiculos__thead">
-                <th>Matricula</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Cliente</th>
-                <th>Estado</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        `
-        console.log(vehiculos);
+
         return true;
     }
 
